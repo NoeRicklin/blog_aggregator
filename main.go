@@ -9,13 +9,10 @@ import(
 const userName = "glueckskeks"
 
 func main() {
-	c, err := config.Read()
+	cfg, err := config.Read()
 	if err != nil { log.Fatal(err) }
 
-	c.SetUser(userName)
+	s := state{ cfg: *cfg }
 
-	c, err = config.Read()
-	if err != nil { log.Fatal(err) }
-
-	fmt.Println(c)
+	c := commands{ cmds: make(map[string]func(*state, command) error }
 }
